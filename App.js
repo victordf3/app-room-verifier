@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import { connect, Provider } from 'react-redux';
+import Main from './src/Main/Main.js';
+
+import store from './src/redux/store';
 
 class App extends Component {
   render() {
-    return (
-      <View>
-        <Text>
-          Welcome to React Native!
-        </Text>
-      </View>
-    );
+    return <Main />;
   }
 }
 
-export default App;
+const InitApp = connect(state => state)(App);
+
+export default class BeforeInit extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <InitApp />
+      </Provider>
+    );
+  }
+}
