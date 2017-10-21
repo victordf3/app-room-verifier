@@ -6,7 +6,7 @@ class Today extends React.Component {
     render() {
         return (
             <View>
-                <Text>Teste</Text>
+                <Text>Teste Today</Text>
             </View>
         );
     }

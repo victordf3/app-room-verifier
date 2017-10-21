@@ -6,7 +6,7 @@ class Notification extends React.Component {
     render() {
         return (
             <View>
-                <Text>Teste</Text>
+                <Text>Teste Notification</Text>
             </View>
         );
     }

@@ -6,7 +6,7 @@ class Sidebar extends React.Component {
     render() {
         return (
             <View>
-                <Text>Teste</Text>
+                <Text>Hello</Text>
             </View>
         );
     }
