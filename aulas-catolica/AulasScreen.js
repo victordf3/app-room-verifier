@@ -22,7 +22,7 @@ export default class AulasScreen extends React.Component {
           let aulas = snapshot.val();
           Object.keys(aulas).forEach((key) => {
             let aula = aulas[key];
-            let data = aula.data + "T" + aula.hora_inicio;
+            let data = `${aula.data}T23:59:59`;
             if (((new Date(data)) >= (new Date())) && (Object.keys(aula.alunos).includes(aluno.matricula))) {
               this.setState((prevState) => {
                 let aulas = prevState.aulas.slice();
@@ -95,7 +95,6 @@ export default class AulasScreen extends React.Component {
     this.state.aulas.forEach((aula) => {
       let dataHoje = new Date();
       dataHoje = dataHoje.getDate() + "/" + (dataHoje.getMonth() + 1) + "/" + dataHoje.getFullYear();
-
       let partesData = aula.data.match(/(\d+)/g);
       let dataDaAula = new Date(partesData[0], partesData[1] - 1, partesData[2]);
       dataDaAula = dataDaAula.getDate() + "/" + (dataDaAula.getMonth() + 1) + "/" + dataDaAula.getFullYear();

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Text } from "react-native";
-import { DrawerNavigator, StackNavigator } from "react-navigation";
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { DrawerNavigator, StackNavigator, DrawerItems } from "react-navigation";
 import LoginScreen from "./LoginScreen";
 import AulasScreen from "./AulasScreen";
 import PerfilScreen from "./PerfilScreen";
@@ -45,21 +45,44 @@ const SobreStackNavigator = StackNavigator(
   }
 );
 
-const AulasApp = DrawerNavigator({
-  Login: {screen: LoginScreen},
-  Aulas: {
-    name: "AulasStackNavigator",
-    screen: AulasStackNavigator
+const AulasApp = DrawerNavigator(
+  {
+    Login: {screen: LoginScreen},
+    Aulas: {
+      name: "AulasStackNavigator",
+      screen: AulasStackNavigator
+    },
+    Perfil: {
+      name: "PerfilStackNavigator",
+      screen: PerfilStackNavigator
+    },
+    Sobre: {
+      name: "SobreStackNavigator",
+      screen: SobreStackNavigator
+    }
   },
-  Perfil: {
-    name: "PerfilStackNavigator",
-    screen: PerfilStackNavigator
-  },
-  Sobre: {
-    name: "SobreStackNavigator",
-    screen: SobreStackNavigator
+  {
+    contentComponent: (props) => {
+      let sair = () => props.navigation.navigate("Login");
+      let styles = StyleSheet.create({
+        botaoSair: {
+          color: "rgba(0, 0, 0, .87)",
+          fontWeight: "bold",
+          margin: 16
+        }
+      });
+
+      return (
+        <ScrollView>
+          <DrawerItems {...props} />
+          <TouchableOpacity onPress={sair}>
+            <Text style={styles.botaoSair}>Sair</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      );
+    }
   }
-});
+);
 
 export default class App extends Component {
   render() {
